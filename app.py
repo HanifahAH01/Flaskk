@@ -90,34 +90,34 @@ def recap_admin():
     jadwal_records = cur.fetchall()
     cur.close()
 
-    return render_template("app/templates/Dashboard_Admin/Diagram_Admin.html", grouped_jadwal=jadwal_records,harvest_data=harvest_data, plot_html=plot_html, heatmap_records=heatmap_records,jadwal_records=jadwal_records,userDetails=userDetails, userDetailskapasitas=userDetailskapasitas)
+    return render_template("templates/Dashboard_Admin/Diagram_Admin.html", grouped_jadwal=jadwal_records,harvest_data=harvest_data, plot_html=plot_html, heatmap_records=heatmap_records,jadwal_records=jadwal_records,userDetails=userDetails, userDetailskapasitas=userDetailskapasitas)
 
 @app.route("/testing")
 def test():
-    return render_template("app/templates/Chart/testing.html")
+    return render_template("templates/Chart/testing.html")
 
 # Home
 @app.route("/home")
 def home():
-    return render_template("app/templates/Home/Home.html")
+    return render_template("Home.html")
 
 # Home - Admin
 @app.route("/home-admin")
 def home_admin():
-    return render_template("app/templates/Dashboard_Admin/Home_admin.html")
+    return render_template("templates/Dashboard_Admin/Home_admin.html")
 
 # admin
 @app.route("/admin")
 def admin():
     if 'email' in session:
-        return render_template("app/templates/Dashboard_Admin/Admin.html")
+        return render_template("templates/Dashboard_Admin/Admin.html")
     else:
         return redirect(url_for('login'))
     
 @app.route("/datatables")
 def datatables():
     if 'email' in session:
-        return render_template("app/templates/Dashboard_Admin/datatables.html")
+        return render_template("templates/Dashboard_Admin/datatables.html")
     else:
         return redirect(url_for('login'))
     
@@ -152,7 +152,7 @@ def login():
 
             flash('You have successfully registered!', 'success')
             return redirect(url_for('login'))
-    return render_template('app/templates/logres/login.html')
+    return render_template('templates/logres/login.html')
 
 @app.route('/logout')
 def logout():
@@ -240,7 +240,7 @@ def dashboard_admin():
     kapasitas = cur.fetchall()
     cur.close()
 
-    return render_template('app/templates/Dashboard_Admin/datatables.html', kapasitas=kapasitas,heatmap=heatmap,prodi=prodi, Jadwal=Jadwal, statuses=statuses, booking=booking, laporan=laporan)
+    return render_template('templates/Dashboard_Admin/datatables.html', kapasitas=kapasitas,heatmap=heatmap,prodi=prodi, Jadwal=Jadwal, statuses=statuses, booking=booking, laporan=laporan)
 
 
 @app.route('/edit/<int:No>', methods=['GET', 'POST'])
@@ -287,7 +287,7 @@ def edit(No):
         statuses = cur.fetchall()
         cur.close()
         
-        return render_template('app/templates/Dashboard_Admin/form_jadwal_admin.html', data=data, statuses=statuses)
+        return render_template('templates/Dashboard_Admin/form_jadwal_admin.html', data=data, statuses=statuses)
 
 
 @app.route('/edit_action/<int:No>', methods=['POST'])
@@ -483,12 +483,12 @@ def diagram():
     jadwal_records = cur.fetchall()
     cur.close()
 
-    return render_template("app/templates/Chart/Diagram.html", grouped_jadwal=jadwal_records,harvest_data=harvest_data, plot_html=plot_html, heatmap_records=heatmap_records,jadwal_records=jadwal_records, userDetailskapasitas=userDetailskapasitas)
+    return render_template("templates/Chart/Diagram.html", grouped_jadwal=jadwal_records,harvest_data=harvest_data, plot_html=plot_html, heatmap_records=heatmap_records,jadwal_records=jadwal_records, userDetailskapasitas=userDetailskapasitas)
 
 # Dashboard
 @app.route("/dashboard")
 def Dashboard():
-    return render_template("app/templates/Recap/Dashboard.html")
+    return render_template("templates/Recap/Dashboard.html")
 
 # Report
 @app.route("/report")
@@ -505,7 +505,7 @@ def report():
     waktu_data = cur1.fetchall()
     cur1.close()
 
-    return render_template("app/templates/Recap/Report.html", rooms=rooms, waktu_data=waktu_data)
+    return render_template("templates/Recap/Report.html", rooms=rooms, waktu_data=waktu_data)
 
 # Rekap Report
 @app.route("/Rekap-Report")
@@ -515,7 +515,7 @@ def Rekap_Report():
     cur.execute(query)
     laporan = cur.fetchall()
     cur.close()
-    return render_template("app/templates/Recap/Laporan.html", laporan=laporan)
+    return render_template("templates/Recap/Laporan.html", laporan=laporan)
 
 # Rekap Booking
 @app.route("/Rekap-Booking")
@@ -530,7 +530,7 @@ def Rekap_Booking():
     laporan = cur.fetchall()
     cur.close()
     
-    return render_template("app/templates/Recap/recapbooking.html", laporan=laporan)
+    return render_template("templates/Recap/recapbooking.html", laporan=laporan)
 
 @app.route("/add")
 def add():
@@ -546,7 +546,7 @@ def add():
     waktu_data = cur1.fetchall()
     cur1.close()
 
-    return render_template("app/templates/Recap/tambah.html", rooms=rooms, waktu_data=waktu_data)
+    return render_template("templates/Recap/tambah.html", rooms=rooms, waktu_data=waktu_data)
 
 @app.route('/submit_booking', methods=['POST'])
 def submit_booking():
@@ -603,7 +603,7 @@ def kapasitas_():
     userDetails = cur.fetchall()
     cur.close()
     
-    return render_template('app/templates/Recap/Kapasitas.html', userDetails=userDetails)
+    return render_template('templates/Recap/Kapasitas.html', userDetails=userDetails)
 
 # Dosen
 @app.route("/dosen")
@@ -628,7 +628,7 @@ def dosen():
     userDetailsKhusus = cur.fetchall()
     cur.close()
 
-    return render_template('app/templates/Recap/Dosen.html', userDetails=userDetails, userDetailsKhusus=userDetailsKhusus, list_kode_khusus=list_kode_khusus)
+    return render_template('templates/Recap/Dosen.html', userDetails=userDetails, userDetailsKhusus=userDetailsKhusus, list_kode_khusus=list_kode_khusus)
 
 # Ruangan
 @app.route("/ruangan")
@@ -639,7 +639,7 @@ def ruangan():
     jadwal_records = cur.fetchall()
     cur.close()
 
-    return render_template("app/templates/Recap/Ruangkelas.html", grouped_jadwal=jadwal_records)
+    return render_template("templates/Recap/Ruangkelas.html", grouped_jadwal=jadwal_records)
 
 @app.route("/total_jadwal")
 def get_heatmap():
